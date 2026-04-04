@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+@theme {
+  --color-black: #000000;
+  --color-black-lighter: #0a0a0a;
+  --color-card: #060608;
+  --color-border: #1a1a2e;
+  --color-dim: #555;
+  --color-pink-neon: #FF69B4;
+  --color-pink: #ff4fa3;
+  --color-blue-neon: #00D4FF;
+  --color-purple-neon: #B388FF;
+  --color-purple: #7c5cbf;
+  --color-green: #69FF97;
+  --color-green-neon: #69FF97;
+  --font-mono: 'JetBrains Mono', 'Space Mono', ui-monospace, monospace;
+  --font-sans: 'Space Mono', 'JetBrains Mono', ui-monospace, monospace;
+}
+
+html, body {
+  background: #000;
+  color: #fff;
+  font-family: var(--font-mono);
+  cursor: url('/pixel-cursor.svg') 2 1, auto;
+}
+
+/* Landing page hides cursor for custom trail effect */
+.cursor-none, .cursor-none * {
+  cursor: none !important;
+}
+
+::selection {
+  background: rgba(255, 105, 180, 0.3);
+  color: #fff;
+}
+
+/* Custom cursor */
+.custom-cursor {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: #FF69B4;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  box-shadow: 0 0 10px #FF69B4, 0 0 20px #FF69B4, 0 0 40px rgba(255,105,180,0.5);
+  transition: transform 0.05s ease;
+}
+
+.cursor-trail {
+  position: fixed;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transition: opacity 0.3s ease;
+}
+
+/* Flicker animation for floating words */
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  5% { opacity: 0.8; }
+  10% { opacity: 1; }
+  15% { opacity: 0.6; }
+  20% { opacity: 1; }
+  50% { opacity: 1; }
+  52% { opacity: 0.4; }
+  54% { opacity: 1; }
+  80% { opacity: 1; }
+  82% { opacity: 0.7; }
+  84% { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes shootingStar {
+  0% { transform: translateX(-100vw) translateY(-20vh); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateX(100vw) translateY(20vh); opacity: 0; }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-flicker {
+  animation: flicker 4s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+/* Shooting star */
+.shooting-star {
+  position: fixed;
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #FF69B4, #00D4FF, transparent);
+  border-radius: 999px;
+  opacity: 0;
+  animation: shootingStar 3s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.shooting-star::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: -2px;
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #fff, 0 0 20px #00D4FF, 0 0 40px #FF69B4;
+}
+
+/* Stars background */
+.star {
+  position: fixed;
+  width: 2px;
+  height: 2px;
+  background: #fff;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: twinkle 3s ease-in-out infinite;
+}
