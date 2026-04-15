@@ -531,14 +531,7 @@ export default function DataPage() {
               color={YELLOW}
             />
 
-            <SectionTitle color={BLUE}>Familiarity vs Confidence Scatter</SectionTitle>
-            <p style={{ color: "#666", fontFamily: "monospace", fontSize: 11, marginBottom: 12 }}>
-              Does knowing more about how OF works change how confident you are you&apos;re talking to the model?
-            </p>
-            <ScatterPlot data={data.familiarVsConfident} xLabel="Familiarity (1-5)" yLabel="Confidence (1-5)" color={BLUE} />
-            <p style={{ color: "#666", fontFamily: "monospace", fontSize: 11, marginTop: 8 }}>
-              Clusters in the low-confidence zone regardless of familiarity — knowing how it works doesn&apos;t change the behavior.
-            </p>
+
           </>
         )}
 
